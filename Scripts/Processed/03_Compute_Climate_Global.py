@@ -9,10 +9,9 @@ import metview as mv
 # Code runtime: the code will take up to x hours.
 
 # DESCRIPTION OF INPUT PARAMETERS
-# BaseDateS (date, in the format YYYYMMDD): start date to consider.
-# BaseDateF (date, in the format YYYYMMDD): final date to consider.
 # Acc (integer, in hours): rainfall accumulation period.
-# Perc_list (list of integers): list of percentiles to compute
+# NumSA (integer): number of total considered sub-areas.
+# SystemFC (string): forecasting system to consider.
 # Git_repo (string): path of local github repository.
 # DirIN (string): relative path for the input directory containing ERA5.
 # DirOUT (string): relative path for the output directory containing the climatology.
@@ -30,49 +29,29 @@ DirOUT = "Data/Compute/Climate_Global"
 
 # Reading the global field for the sample grib
 sample_grib_global = mv.read(GitRepo + "/" + FileIN_Sample_Grib_Global)
-NumGP = int(mv.count(mv.values(sample_grib_global)))
-NumSA = int(NumGP / NumSA)
+NumGP_g = int(mv.count(mv.values(sample_grib_global)))
+NumGP_sa = int(NumGP_g / NumSA)
 
-
+# Merging the climatologies for all the sub-areas to create global fields
+print("Merging the climatologies for all the sub-areas to create global fields")
 for ind_SA in range(NumSA):
       
-      tp_full_period_sa = np.empty((NumSA,0))
-      
-      
-      # Reading the sub-areas containing the raw rainfall realizations 
-      BaseDate = BaseDateS
-      
-      while BaseDate <= BaseDateF:
-      
-            print(" - Processing the date: ", BaseDate)
-            DirIN_temp = GitRepo + "/" + DirIN_RainSA + "/" + SystemFC + "_" + f'{Acc:02d}' + "h" + "/" + BaseDate.strftime("%Y%m%d")
-            FileIN_temp = "tp_" + BaseDate.strftime("%Y%m%d") + "_" + f'{ind_SA:03d}' + ".npy"
-            tp_SA = np.load(DirIN_temp + "/" + FileIN_temp)
-            tp_full_period_sa = np.hstack((tp_full_period_sa, tp_SA))     
+      print(" - Reading the sub-area n." + str(ind_SA) + "/" + str(NumSA))
+      DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
+      FileIN_temp = "ClimateSA_" + f'{ind_SA:03d}' + ".npy"
+      tp_SA = np.load(DirIN_temp + "/" + FileIN_temp)
+      tp_full_period_sa = np.vstack((tp_full_period_sa, tp_SA))     
+npercs = tp_full_period_sa.shape[1]
 
-            BaseDate = BaseDate + timedelta(days=1)
-
-      percs_sa = np.percentile(tp_full_period_sa, Perc_list, axis=1).T
-      
-
-
-
-      
-exit()
-
-
-
-#  Storing the percentiles as grib while restoring the global field
+#  Storing the percentiles as grib
 percs_tot_global = None
 for ind_perc in range(npercs):
-      temp_perc_sa = percs_sa[:,ind_perc]
-      percs_sample_global_array[ind_sa] = temp_perc_sa
-      percs_tot_global = mv.merge(percs_tot_global, mv.set_values(percs_sample_global_grib[0], percs_sample_global_array))
+      percs_tot_global = mv.merge(percs_tot_global, mv.set_values(sample_grib_global, tp_full_period_sa[:,ind_perc]))
 
 # Saving the output file
 print("Storing the output file")
 DirOUT_temp = GitRepo + "/" + DirOUT + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
 if not os.path.exists(DirOUT_temp):
       os.makedirs(DirOUT_temp)
-FileOUT = DirOUT_temp + "/Climate_ERA5_Italy_" + f'{Acc:02d}' + "h.grib"
+FileOUT = DirOUT_temp + "/Climate_" + SystemFC + "_" + f'{Acc:02d}' + "h.grib"
 mv.write(FileOUT, percs_tot_global)
