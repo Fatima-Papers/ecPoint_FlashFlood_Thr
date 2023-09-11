@@ -5,7 +5,7 @@ import metview as mv
 
 #####################################################################
 # CODE DESCRIPTION
-# 03_Compute_Climate_ERA5.py computes modelled rainfall climatology from ERA5.
+# 03_Compute_Merge_ClimateSA.py computes modelled rainfall climatology from ERA5.
 # The script is very memory demanding, so the raw ERA5 values are converted to 
 # 16-bytes floats.
 # Code runtime: the code will take up to x hours.

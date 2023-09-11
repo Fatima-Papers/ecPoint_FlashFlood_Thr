@@ -6,7 +6,7 @@ import metview as mv
 
 ###################################################################
 # CODE DESCRIPTION
-# 03_Compute_ClimateSA.py computes modelled rainfall climatology for a specific
+# 02_Compute_ClimateSA.py computes modelled rainfall climatology for a specific
 # sub-area.
 # Code runtime: the code will take up to x hours.
 

@@ -14,4 +14,4 @@
 SA_2_Compute=${1}
 SystemFC=${2}
 
-python3 03_Compute_ClimateSA.py $SA_2_Compute $SystemFC
+python3 02_Compute_ClimateSA.py $SA_2_Compute $SystemFC
