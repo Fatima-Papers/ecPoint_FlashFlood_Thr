@@ -1,0 +1,47 @@
+[ECMWF-INFO -sbatch] - -------------------------------------------------------------------------------------
+[ECMWF-INFO -sbatch] -  This is the ECMWF jobfilter
+[ECMWF-INFO -sbatch] -  +++ Please report issues using the Support portal +++
+[ECMWF-INFO -sbatch] -  +++ https://support.ecmwf.int                     +++
+[ECMWF-INFO -sbatch] -  /usr/local/bin/ecsbatch: size: 49010, mtime: Thu Aug 31 09:26:39 2023
+[ECMWF-INFO -sbatch] - -------------------------------------------------------------------------------------
+[ECMWF-INFO -sbatch] - Time at submit: Mon Sep 11 16:36:03 2023 (1694450163.817423) on ac6-102.bullx:/etc/ecmwf/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr/Scripts/Processed
+[ECMWF-INFO -sbatch] - --- SLURM VARIABLES ---
+[ECMWF-INFO -sbatch] - EC_CLUSTER=ac
+[ECMWF-INFO -sbatch] - SLURM_EXPORT_ENV=ALL
+[ECMWF-INFO -sbatch] - SBATCH_EXPORT=NONE
+[ECMWF-INFO -sbatch] - -----------------------
+[ECMWF-INFO -sbatch] - jobscript: /etc/ecmwf/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr/Scripts/Processed/03_SubmitterATOS_ClimateSA.sh
+[ECMWF-INFO -sbatch] - --- SCRIPT OPTIONS ---
+[ECMWF-INFO -sbatch] - #SBATCH --job-name=ClimateSA
+[ECMWF-INFO -sbatch] - #SBATCH --output=LogATOS/ClimateSA-%J.out
+[ECMWF-INFO -sbatch] - #SBATCH --error=LogATOS/ClimateSA-%J.out
+[ECMWF-INFO -sbatch] - #SBATCH --cpus-per-task=1
+[ECMWF-INFO -sbatch] - #SBATCH --mem=64G
+[ECMWF-INFO -sbatch] - #SBATCH --time=2-00:00:00
+[ECMWF-INFO -sbatch] - #SBATCH --qos=nf
+[ECMWF-INFO -sbatch] - #SBATCH --mail-type=FAIL
+[ECMWF-INFO -sbatch] - #SBATCH --mail-user=fatima.pillosu@ecmwf.int
+[ECMWF-INFO -sbatch] - -----------------------
+[ECMWF-INFO -sbatch] - --- POST-PROCESSED OPTIONS ---
+[ECMWF-INFO -sbatch] - ARG --positional=['03_SubmitterATOS_ClimateSA.sh', '17', 'ERA5_ecPoint']
+[ECMWF-INFO -sbatch] - ARG --cpus_per_task=1
+[ECMWF-INFO -sbatch] - ARG --error=LogATOS/ClimateSA-%J.out
+[ECMWF-INFO -sbatch] - ARG --job_name=ClimateSA
+[ECMWF-INFO -sbatch] - ARG --mail_type=FAIL
+[ECMWF-INFO -sbatch] - ARG --mail_user=fatima.pillosu@ecmwf.int
+[ECMWF-INFO -sbatch] - ARG --output=LogATOS/ClimateSA-%J.out
+[ECMWF-INFO -sbatch] - ARG --qos=nf
+[ECMWF-INFO -sbatch] - ARG --time=2-00:00:00
+[ECMWF-INFO -sbatch] - ARG --mem=64G
+[ECMWF-INFO -sbatch] - ------------------------------
+[ECMWF-INFO -sbatch] - jobtag: mofp-ClimateSA-1x2-/etc/ecmwf/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr/Scripts/Processed/LogATOS/ClimateSA-_.out
+[ECMWF-INFO -sbatch] - ['/usr/bin/sbatch', '--cpus-per-task=1', '--error=LogATOS/ClimateSA-%J.out', '--job-name=ClimateSA', '--mail-type=FAIL', '--mail-user=fatima.pillosu@ecmwf.int', '--output=LogATOS/ClimateSA-%J.out', '--qos=nf', '--time=2-00:00:00', '--mem=64G', '--licenses=h2resw01', '--export=EC_user_time_limit=2-00:00:00', '/etc/ecmwf/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr/Scripts/Processed/03_SubmitterATOS_ClimateSA.sh', '17', 'ERA5_ecPoint']
+[ECMWF-INFO -sbatch] - sbatch executed on ac
+[ECMWF-INFO -sbatch] - Job queued on ac using method local
+[ECMWF-INFO -sbatch] - Submitted batch job 31863432
+[ECMWF-INFO -ecprofile] /usr/bin/bash NON_INTERACTIVE on ac6-168 at 20230911_163612.385, PID: 4192765, JOBID: 31863432
+[ECMWF-INFO -ecprofile] $SCRATCH=/ec/res4/scratch/mofp
+[ECMWF-INFO -ecprofile] $PERM=/perm/mofp
+[ECMWF-INFO -ecprofile] $HPCPERM=/ec/res4/hpcperm/mofp
+[ECMWF-INFO -ecprofile] $TMPDIR=/etc/ecmwf/ssd/ssd1/tmpdirs/mofp.31863432
+[ECMWF-INFO -ecprofile] $SCRATCHDIR=/ec/res4/scratchdir/mofp/0/31863432
