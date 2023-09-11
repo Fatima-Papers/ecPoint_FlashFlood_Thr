@@ -140,8 +140,6 @@ while BaseDate <= BaseDateF:
       if SystemFC == "ERA5_ecPoint" and Acc == 12:
             DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
             tp_temp = tp_ERA5_ecPoint_12h(BaseDate, DirIN_temp)
-      
-      
       NumGP_Global = tp_temp.shape[0]
 
       # Extracting the sub-areas
@@ -162,5 +160,5 @@ while BaseDate <= BaseDateF:
 
                   i = int(j)
                   j = int(j + (NumGP_Global/NumSA))
-           
+
       BaseDate = BaseDate + timedelta(days=1)

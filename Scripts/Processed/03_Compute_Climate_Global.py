@@ -1,13 +1,11 @@
 import os
-from datetime import datetime, timedelta
 import numpy as np
 import metview as mv
 
-#####################################################################
+###################################################################
 # CODE DESCRIPTION
-# 03_Compute_Merge_ClimateSA.py computes modelled rainfall climatology from ERA5.
-# The script is very memory demanding, so the raw ERA5 values are converted to 
-# 16-bytes floats.
+# 03_Compute_Climate_Global.py merges the climatologies for each sub-area, 
+# and creates a global field.
 # Code runtime: the code will take up to x hours.
 
 # DESCRIPTION OF INPUT PARAMETERS
@@ -20,17 +18,14 @@ import metview as mv
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
-BaseDateS = datetime(1980,1,1,0)
-BaseDateF = datetime(2020,12,31,0)
 Acc = 12
 NumSA = 160
 SystemFC = "ERA5_ecPoint"
-Perc_list = np.append(np.arange(1,100), np.array([99.4, 99.5,99.8,99.95]))
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
-DirIN_RainSA = "Data/Compute/Reanalysis_SA"
-DirOUT = "Data/Compute/Climate"
-#####################################################################
+DirIN = "Data/Compute/ClimateSA"
+DirOUT = "Data/Compute/Climate_Global"
+###################################################################
 
 
 # Reading the global field for the sample grib

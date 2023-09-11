@@ -50,7 +50,7 @@ done
 # done
 
 # NumSA_s=140
-# NumSA_f=160
+# NumSA_f=159
 # SystemFC="ERA5_ecPoint"
 # for SA_2_Compute in $(seq $NumSA_s $NumSA_f); do
 #       sbatch 02_SubmitterATOS_ClimateSA.sh $SA_2_Compute $SystemFC
@@ -106,7 +106,7 @@ done
 # done
 
 # NumSA_s=140
-# NumSA_f=160
+# NumSA_f=159
 # SystemFC="ERA5"
 # for SA_2_Compute in $(seq $NumSA_s $NumSA_f); do
 #       sbatch 02_SubmitterATOS_ClimateSA.sh $SA_2_Compute $SystemFC
