@@ -3,8 +3,8 @@
 #SBATCH --job-name=ClimateSA
 #SBATCH --output=LogATOS/ClimateSA-%J.out
 #SBATCH --error=LogATOS/ClimateSA-%J.out
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=64G
+#SBATCH --cpus-per-task=64
+#SBATCH --mem=128G
 #SBATCH --time=2-00:00:00
 #SBATCH --qos=nf
 #SBATCH --mail-type=FAIL

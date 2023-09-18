@@ -1,0 +1,8 @@
+-100,-100,PYTHON,01_Compute_ExtractSA.py
+-100,-100,PYTHON,02_Compute_ClimateSA.py
+-100,-100,SHELL,02_SubmitterATOS_ClimateSA.sh
+-100,-100,SHELL,02_WrapperATOS_ClimateSA.sh
+-100,-100,PYTHON,03_Compute_Climate_Global.py
+-100,-100,PYTHON,04_Plot_Climate.py
+-100,-100,FOLDER,LogATOS
+-100,-100,NOTE,README.md

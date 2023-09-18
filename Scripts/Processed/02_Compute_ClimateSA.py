@@ -26,7 +26,7 @@ import metview as mv
 BaseDateS = datetime(2000,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
 Acc = 12
-NumSA = 160
+NumSA = 240
 SA_2_Compute = int(sys.argv[1])
 Perc_list = np.append(np.arange(1,100), np.array([99.4, 99.5,99.8,99.95]))
 SystemFC = sys.argv[2]
@@ -51,7 +51,7 @@ BaseDate = BaseDateS
 while BaseDate <= BaseDateF:
 
       print(" - Processing the date: ", BaseDate)
-      DirIN_temp = GitRepo + "/" + DirIN_RainSA + "/" + SystemFC + "_" + f'{Acc:02d}' + "h" + "/" + BaseDate.strftime("%Y%m%d")
+      DirIN_temp = GitRepo + "/" + DirIN_RainSA + "_" + f'{Acc:02d}' + "h/" + SystemFC + "/" + BaseDate.strftime("%Y%m%d")
       FileIN_temp = "tp_" + BaseDate.strftime("%Y%m%d") + "_" + f'{SA_2_Compute:03d}' + ".npy"
       tp_SA = np.load(DirIN_temp + "/" + FileIN_temp)
       tp_full_period_sa = np.hstack((tp_full_period_sa, tp_SA))     
@@ -64,7 +64,7 @@ percs_sa = np.percentile(tp_full_period_sa, Perc_list, axis=1).T
       
 # Saving the rainfall climatology for the specific sub-area
 print("Saving the rainfall climatology")
-DirOUT_temp = GitRepo + "/" + DirOUT + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
+DirOUT_temp = GitRepo + "/" + DirOUT + "_" + f'{Acc:02d}' + "h/" + SystemFC
 if not os.path.exists(DirOUT_temp):
       os.makedirs(DirOUT_temp)
 FileOUT_temp = "ClimateSA_" + f'{SA_2_Compute:03d}' + ".npy"

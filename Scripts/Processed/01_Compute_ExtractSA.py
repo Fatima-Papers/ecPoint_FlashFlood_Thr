@@ -21,11 +21,11 @@ import metview as mv
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
-BaseDateS = datetime(1980,1,1,0)
+BaseDateS = datetime(2000,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
 Acc = 12
-NumSA = 160
-SystemFC = "ERA5"
+NumSA = 240
+SystemFC = "ERA5_ecPoint"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 DirIN = "Data/Raw/Reanalysis"
 DirOUT = "Data/Compute/Reanalysis_SA"
@@ -152,7 +152,7 @@ while BaseDate <= BaseDateF:
                   tp_sa_temp = tp_temp[i:j,:]
 
                   # Saving the extracted sub-areas
-                  DirOUT_temp = GitRepo + "/" + DirOUT + "_" + f'{Acc:02d}' + "h/" + BaseDate.strftime("%Y%m%d")
+                  DirOUT_temp = GitRepo + "/" + DirOUT + "_" + f'{Acc:02d}' + "h/" + SystemFC + "/" + BaseDate.strftime("%Y%m%d")
                   if not os.path.exists(DirOUT_temp):
                         os.makedirs(DirOUT_temp)
                   FileOUT_temp = "tp_" + BaseDate.strftime("%Y%m%d") + "_" + f'{ind_SA:03d}' + ".npy"
