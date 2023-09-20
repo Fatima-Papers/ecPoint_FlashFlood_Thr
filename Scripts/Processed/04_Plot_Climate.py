@@ -18,12 +18,12 @@ import metview as mv
 
 # INPUT PARAMETERS
 Acc = 12
-Perc = 99
+Perc = 99.95
 SystemFC_list = ["ERA5", "ERA5_ecPoint"]
 NameSA_list = ["Italy"]
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 DirIN = "Data/Compute/Climate"
-DirOUT = "Data/Plot/Climate"
+DirOUT = "Data/Plot/Climate1"
 #####################################################################
 
 # Setting the list of percentiles that can be plotted, and the index of the percentile to plot
