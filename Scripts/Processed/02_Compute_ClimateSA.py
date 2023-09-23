@@ -4,37 +4,38 @@ from datetime import datetime, timedelta
 import numpy as np
 import metview as mv
 
-###################################################################
+########################################################################
 # CODE DESCRIPTION
 # 02_Compute_ClimateSA.py computes modelled rainfall climatology for a specific
 # sub-area.
-# Code runtime: the code will take up to x hours.
+# Code runtime: the code will take up to 9 hours considering 240 sub-areas.
 
 # DESCRIPTION OF INPUT PARAMETERS
 # BaseDateS (date, in the format YYYYMMDD): start date to consider.
 # BaseDateF (date, in the format YYYYMMDD): final date to consider.
 # Acc (integer, in hours): rainfall accumulation period.
-# NumSA (integer): number of total considered sub-areas.
-# SA_2_Compute (integer): index for the sub-area to consider.
 # Perc_list (list of integers): list of percentiles to compute.
+# SA_2_Compute (integer): index for the sub-area to consider.
 # SystemFC (string): forecasting system to consider.
+# NumSA (integer): number of total considered sub-areas.
 # Git_repo (string): path of local github repository.
-# DirIN (string): relative path for the input directory containing ERA5.
+# FileIN_Sample_Grib_Global (string): path of the file containing the global field sample.
+# DirIN_RainSA (string): relative path for the input directory containing ERA5.
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
 BaseDateS = datetime(2000,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
 Acc = 12
-NumSA = 240
-SA_2_Compute = int(sys.argv[1])
 Perc_list = np.append(np.arange(1,100), np.array([99.4, 99.5,99.8,99.95]))
+SA_2_Compute = int(sys.argv[1])
 SystemFC = sys.argv[2]
+NumSA = int(sys.argv[3])
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
 DirIN_RainSA = "Data/Compute/Reanalysis_SA"
 DirOUT = "Data/Compute/ClimateSA"
-###################################################################
+########################################################################
 
 
 # Reading the global field for the sample grib

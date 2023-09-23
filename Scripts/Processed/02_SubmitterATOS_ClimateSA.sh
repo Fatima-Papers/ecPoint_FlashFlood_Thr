@@ -13,5 +13,6 @@
 # INPUTS
 SA_2_Compute=${1}
 SystemFC=${2}
+NumSA=${3}
 
-python3 02_Compute_ClimateSA.py $SA_2_Compute $SystemFC
+python3 02_Compute_ClimateSA.py $SA_2_Compute $SystemFC $NumSA

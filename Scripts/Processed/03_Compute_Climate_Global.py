@@ -19,11 +19,11 @@ import metview as mv
 # INPUT PARAMETERS
 Acc = 12
 NumSA = 160
-SystemFC = "ERA5_ecPoint"
+SystemFC = "ERA5"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
 DirIN = "Data/Compute/ClimateSA"
-DirOUT = "Data/Compute/Climate_Global"
+DirOUT = "Data/Compute/ClimateG"
 ###################################################################
 
 
@@ -34,23 +34,28 @@ NumGP_sa = int(NumGP_g / NumSA)
 
 # Merging the climatologies for all the sub-areas to create global fields
 print("Merging the climatologies for all the sub-areas to create global fields")
-for ind_SA in range(NumSA):
-      
-      print(" - Reading the sub-area n." + str(ind_SA) + "/" + str(NumSA))
-      DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
+print(" - Reading the sub-area n." + str(0) + "/" + str(NumSA))
+DirIN_temp = GitRepo + "/" + DirIN + "_" + f'{Acc:02d}' + "h/" + SystemFC
+FileIN_temp = "ClimateSA_" + f'{0:03d}' + ".npy"
+tp_G = np.load(DirIN_temp + "/" + FileIN_temp)
+npercs = tp_G.shape[1]
+for ind_SA in range(1,NumSA):
+      print(" - Reading the sub-area n." + str(ind_SA) + "/" + str(NumSA-1))
+      DirIN_temp = GitRepo + "/" + DirIN + "_" + f'{Acc:02d}' + "h/" + SystemFC
       FileIN_temp = "ClimateSA_" + f'{ind_SA:03d}' + ".npy"
       tp_SA = np.load(DirIN_temp + "/" + FileIN_temp)
-      tp_full_period_sa = np.vstack((tp_full_period_sa, tp_SA))     
-npercs = tp_full_period_sa.shape[1]
+      tp_G = np.concatenate((tp_G, tp_SA), axis=0) 
 
 #  Storing the percentiles as grib
+print("Converting the numpy array into grib")
 percs_tot_global = None
 for ind_perc in range(npercs):
-      percs_tot_global = mv.merge(percs_tot_global, mv.set_values(sample_grib_global, tp_full_period_sa[:,ind_perc]))
+      print(" - Converting percentile n." + str(ind_perc) + "/" + str(npercs))
+      percs_tot_global = mv.merge(percs_tot_global, mv.set_values(sample_grib_global, tp_G[:,ind_perc]))
 
 # Saving the output file
 print("Storing the output file")
-DirOUT_temp = GitRepo + "/" + DirOUT + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
+DirOUT_temp = GitRepo + "/" + DirOUT  + "_" + f'{Acc:02d}' + "h/" + SystemFC 
 if not os.path.exists(DirOUT_temp):
       os.makedirs(DirOUT_temp)
 FileOUT = DirOUT_temp + "/Climate_" + SystemFC + "_" + f'{Acc:02d}' + "h.grib"

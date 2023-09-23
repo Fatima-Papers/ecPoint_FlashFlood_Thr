@@ -24,7 +24,7 @@ import metview as mv
 BaseDateS = datetime(2000,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
 Acc = 12
-NumSA = 240
+NumSA = 220
 SystemFC = "ERA5_ecPoint"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 DirIN = "Data/Raw/Reanalysis"
