@@ -21,9 +21,9 @@ import metview as mv
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
-BaseDateS = datetime(2000,1,1,0)
+BaseDateS = datetime(2020,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
-Acc = 12
+Acc = 24
 NumSA = 220
 SystemFC = "ERA5_ecPoint"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
@@ -75,7 +75,7 @@ def tp_ERA5_12h(BaseDateTime, DirIN):
       # Converting the accumulated rainfall totals from m to mm, and creating the variable that stores the independent rainfall realizations
       if tp_12 != 0 and tp_00 != 0: 
             tp_12 = tp_12 * 1000
-            tp_00 = tp_00 * 1000               
+            tp_00 = tp_00 * 1000
             tp = mv.merge(tp_12, tp_00)
       else:
             tp = 0
@@ -111,8 +111,6 @@ def tp_ERA5_ecPoint_12h(BaseDateTime, DirIN):
 
       # Converting the accumulated rainfall totals from m to mm, and creating the variable that stores the independent rainfall realizations
       if tp_12 != 0 and tp_00 != 0: 
-            tp_12 = tp_12 * 1000
-            tp_00 = tp_00 * 1000               
             tp = mv.merge(tp_12, tp_00)
       else:
             tp = 0

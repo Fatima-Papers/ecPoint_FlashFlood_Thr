@@ -18,7 +18,7 @@ import metview as mv
 
 # INPUT PARAMETERS
 Acc = 12
-Perc = 99
+Perc = 97
 Perc_list = np.append(np.arange(1,100), np.array([99.4, 99.5,99.8,99.95]))
 SystemFC_list = ["ERA5"]
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
@@ -66,7 +66,7 @@ for SystemFC in SystemFC_list:
         legend = "on",
         contour = "off",
         contour_level_selection_type = "level_list",
-        contour_level_list = [0,0.5,2,5,10,20,30,40,50,60,80,100,125,150,200,300,500,5000],
+        contour_level_list = [0,0.5,2,5,10,20,30,40,50,60,80,100,125,150,200,300,500,50000],
         contour_label = "off",
         contour_shade = "on",
         contour_shade_colour_method = "list",
@@ -85,7 +85,7 @@ for SystemFC in SystemFC_list:
 
     title = mv.mtext(
         text_line_count = 3,
-        text_line_1 = "Rainfall climatology from ERA5",
+        text_line_1 = "Rainfall climatology from " + SystemFC,
         text_line_2 = str(RP) + "-year retrurn period (Perc = " +  str(Perc) + "th)",
         text_line_3 = " ",
         text_colour = "charcoal",

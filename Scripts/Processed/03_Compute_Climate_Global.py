@@ -18,8 +18,8 @@ import metview as mv
 
 # INPUT PARAMETERS
 Acc = 12
-NumSA = 160
-SystemFC = "ERA5"
+NumSA = 220
+SystemFC = "ERA5_ecPoint"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
 DirIN = "Data/Compute/ClimateSA"
