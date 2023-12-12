@@ -2,7 +2,7 @@ import os
 import numpy as np
 import metview as mv
 
-#####################################################################
+#############################################################################
 # CODE DESCRIPTION
 # 04_Plot_Climate.py plots modelled rainfall climatologies.
 # Code runtime: negligible
@@ -21,10 +21,10 @@ Acc = 12
 Perc = 97
 Perc_list = np.append(np.arange(1,100), np.array([99.4, 99.5,99.8,99.95]))
 SystemFC_list = ["ERA5"]
-GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
+GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 DirIN = "Data/Compute/ClimateG"
 DirOUT = "Data/Plot/ClimateG"
-#####################################################################
+#############################################################################
 
 # Indexing the percentile to plot
 ind_Perc = np.where(Perc_list == Perc)[0][0]

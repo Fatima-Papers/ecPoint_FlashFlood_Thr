@@ -4,10 +4,9 @@ from datetime import datetime, timedelta
 import numpy as np
 import metview as mv
 
-########################################################################
+#################################################################################
 # CODE DESCRIPTION
-# 02_Compute_ClimateSA.py computes modelled rainfall climatology for a specific
-# sub-area.
+# 02_Compute_ClimateSA.py computes modelled rainfall climatology for a specific sub-area.
 # Code runtime: the code will take up to 9 hours considering 240 sub-areas.
 
 # DESCRIPTION OF INPUT PARAMETERS
@@ -27,16 +26,26 @@ import metview as mv
 BaseDateS = datetime(2000,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
 Acc = 12
-Perc_list = np.append(np.arange(1,100), np.array([99.4, 99.5,99.8,99.95]))
+Perc_list = np.append(np.arange(1,100), np.array([99.8, 99.9, 99.95, 99.98, 99.99, 99.995, 99.998]))
 SA_2_Compute = int(sys.argv[1])
 SystemFC = sys.argv[2]
 NumSA = int(sys.argv[3])
-GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
+GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
 DirIN_RainSA = "Data/Compute/Reanalysis_SA"
 DirOUT = "Data/Compute/ClimateSA"
-########################################################################
+#################################################################################
 
+# NOTES
+# The percentiles correspond roughly to the following return periods:
+# 99th -> 3 times in a year
+# 99.8th -> once in 1 year
+# 99.9th -> once in 2 years
+# 99.95th -> once in 5 years
+# 99.98th -> once in 10 years
+# 99.99th -> once in 20 years
+# 99.995th -> once in 50 years
+# 99.998th -> once in 100 years
 
 # Reading the global field for the sample grib
 sample_grib_global = mv.read(GitRepo + "/" + FileIN_Sample_Grib_Global)

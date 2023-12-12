@@ -2,10 +2,10 @@ import os
 import numpy as np
 import metview as mv
 
-###################################################################
+#############################################################################
 # CODE DESCRIPTION
-# 03_Compute_Climate_Global.py merges the climatologies for each sub-area, 
-# and creates a global field.
+# 03_Compute_Climate_Global.py merges the climatologies for each sub-area, and creates a 
+# global field.
 # Code runtime: the code will take up to x hours.
 
 # DESCRIPTION OF INPUT PARAMETERS
@@ -20,11 +20,11 @@ import metview as mv
 Acc = 12
 NumSA = 220
 SystemFC = "ERA5_ecPoint"
-GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
+GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
 DirIN = "Data/Compute/ClimateSA"
 DirOUT = "Data/Compute/ClimateG"
-###################################################################
+#############################################################################
 
 
 # Reading the global field for the sample grib

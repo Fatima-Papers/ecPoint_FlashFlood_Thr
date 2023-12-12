@@ -3,11 +3,11 @@ from datetime import datetime, timedelta
 import numpy as np
 import metview as mv
 
-####################################################################
+#############################################################################
 # CODE DESCRIPTION
-# 01_Compute_ExtractSA.py extracts indipendent accumulated rainfall realizations  
-# for a specific number of sub-areas. Current valid accumulations are 12-hourly, and 
-# current valid forecasting systems are ERA5 and ERA5_ecPoint.
+# 01_Compute_ExtractSA.py extracts indipendent accumulated rainfall realizations for a 
+# specific number of sub-areas. Current valid accumulations are 12-hourly, and current valid 
+# forecasting systems are ERA5 and ERA5_ecPoint.
 # Code runtime: the code will take up to 48 hours to run in serial.
 
 # DESCRIPTION OF INPUT PARAMETERS
@@ -26,10 +26,10 @@ BaseDateF = datetime(2020,12,31,0)
 Acc = 24
 NumSA = 220
 SystemFC = "ERA5_ecPoint"
-GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
+GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 DirIN = "Data/Raw/Reanalysis"
 DirOUT = "Data/Compute/Reanalysis_SA"
-####################################################################
+#############################################################################
 
 
 # CUSTOM FUNCTIONS
