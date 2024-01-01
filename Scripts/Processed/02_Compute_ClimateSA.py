@@ -32,8 +32,8 @@ SystemFC = sys.argv[2]
 NumSA = int(sys.argv[3])
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
-DirIN_RainSA = "Data/Compute/Reanalysis_SA"
-DirOUT = "Data/Compute/ClimateSA"
+DirIN_RainSA = "Data/Compute/01_ExtractSA"
+DirOUT = "Data/Compute/02_ClimateSA"
 #################################################################################
 
 # NOTES
