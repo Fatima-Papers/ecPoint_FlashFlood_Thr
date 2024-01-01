@@ -12,7 +12,7 @@
 # DirOUT (string): relative path for the output directory
 
 # INPUT PARAMETERS
-YearS=1980
+YearS=2000
 YearF=2020
 Git_repo="/ec/vol/ecpoint_dev/mofp/Papers_2_Write/ecPoint_FlashFlood_Thr"
 DirOUT="Data/Raw/Reanalysis/ERA5"

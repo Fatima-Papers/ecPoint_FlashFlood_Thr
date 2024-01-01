@@ -21,14 +21,14 @@ import metview as mv
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
-BaseDateS = datetime(2020,1,1,0)
+BaseDateS = datetime(2000,1,2,0)
 BaseDateF = datetime(2020,12,31,0)
 Acc = 24
 NumSA = 220
-SystemFC = "ERA5_ecPoint"
+SystemFC = "ERA5"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 DirIN = "Data/Raw/Reanalysis"
-DirOUT = "Data/Compute/Reanalysis_SA"
+DirOUT = "Data/Compute/01_ExtractSA"
 #############################################################################
 
 
@@ -86,6 +86,38 @@ def tp_ERA5_12h(BaseDateTime, DirIN):
       return tp
 
 
+def tp_ERA5_24h(BaseDateTime, DirIN):
+
+      # Computing the accumulated rainfall totals
+      BaseDateTime_0 = BaseDateTime + timedelta(hours=6)
+      BaseDateTime_1 = BaseDateTime - timedelta(days=1) + timedelta(hours=18)
+      count_steps = 0 # to make sure that both required dates are available in  the datebase
+      tp = 0
+      
+      for Step in range(7,(12+1)):
+            DirIN_1 = DirIN + "/" + BaseDateTime_1.strftime("%Y") + "/" + BaseDateTime_1.strftime("%Y%m%d%H")
+            FileIN_1 =  "tp_" + BaseDateTime_1.strftime("%Y%m%d") + "_" + BaseDateTime_1.strftime("%H") + "_" + f'{Step:03d}' + ".grib"
+            if os.path.exists(DirIN_1 + "/" + FileIN_1):
+                  count_steps = count_steps + 1
+                  tp = tp + mv.read(DirIN_1 + "/" + FileIN_1)
+
+      for Step in range(1,(18+1)):  
+            DirIN_0 = DirIN + "/" + BaseDateTime_0.strftime("%Y") + "/" + BaseDateTime_0.strftime("%Y%m%d%H")
+            FileIN_0 =  "tp_" + BaseDateTime_0.strftime("%Y%m%d") + "_" + BaseDateTime_0.strftime("%H") + "_" + f'{Step:03d}' + ".grib"
+            if os.path.exists(DirIN_0 + "/" + FileIN_0):
+                  count_steps = count_steps + 1
+                  tp = tp + mv.read(DirIN_0 + "/" + FileIN_0)
+
+      # Converting the accumulated rainfall totals from m to mm, and converting the fieldset into a 16-byte float numpy array (to reduce memory consumption)
+      if count_steps == 24:
+            tp = tp * 1000
+            tp = mv.values(tp).T.astype(np.float16)
+      else:
+            tp = 0
+      
+      return tp
+      
+      
 ###################################
 # Rainfall realizations from ERA5_ecPoint #
 ###################################
@@ -109,12 +141,27 @@ def tp_ERA5_ecPoint_12h(BaseDateTime, DirIN):
       if os.path.exists(DirIN_00 + "/" + FileIN_00):
             tp_00 = mv.read(DirIN_00 + "/" + FileIN_00)
 
-      # Converting the accumulated rainfall totals from m to mm, and creating the variable that stores the independent rainfall realizations
+      # Creating the variable that stores the independent rainfall realizations
       if tp_12 != 0 and tp_00 != 0: 
             tp = mv.merge(tp_12, tp_00)
       else:
             tp = 0
 
+      # Convert the fieldset into a 16-byte float numpy array (to reduce memory consumption)
+      tp = mv.values(tp).T.astype(np.float16)
+      
+      return tp
+
+
+# Note: the rainfall values are already in mm and are valid for the period 00-00 UTC
+def tp_ERA5_ecPoint_24h(BaseDateTime, DirIN):
+
+      # Reading the accumulated rainfall values
+      DirIN = DirIN + "/Pt_BC_PERC/" + BaseDateTime.strftime("%Y%m")
+      FileIN =  "Pt_BC_PERC_" + BaseDateTime.strftime("%Y%m%d") + ".grib2"
+      if os.path.exists(DirIN + "/" + FileIN):
+            tp = mv.read(DirIN + "/" + FileIN)
+      
       # Convert the fieldset into a 16-byte float numpy array (to reduce memory consumption)
       tp = mv.values(tp).T.astype(np.float16)
       
@@ -135,9 +182,15 @@ while BaseDate <= BaseDateF:
       if SystemFC == "ERA5" and Acc == 12:
             DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC
             tp_temp = tp_ERA5_12h(BaseDate, DirIN_temp)
-      if SystemFC == "ERA5_ecPoint" and Acc == 12:
+      if SystemFC == "ERA5" and Acc == 24:
+            DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC
+            tp_temp = tp_ERA5_24h(BaseDate, DirIN_temp)      
+      elif SystemFC == "ERA5_ecPoint" and Acc == 12:
             DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
             tp_temp = tp_ERA5_ecPoint_12h(BaseDate, DirIN_temp)
+      elif SystemFC == "ERA5_ecPoint" and Acc == 24:
+            DirIN_temp = GitRepo + "/" + DirIN + "/" + SystemFC + "_" + f'{Acc:02d}' + "h"
+            tp_temp = tp_ERA5_ecPoint_24h(BaseDate, DirIN_temp)
       NumGP_Global = tp_temp.shape[0]
 
       # Extracting the sub-areas
