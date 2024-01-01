@@ -11,8 +11,9 @@
 #SBATCH --mail-user=fatima.pillosu@ecmwf.int
 
 # INPUTS
-SA_2_Compute=${1}
-SystemFC=${2}
-NumSA=${3}
+Acc=${1}
+SA_2_Compute=${2}
+SystemFC=${3}
+NumSA=${4}
 
-python3 02_Compute_ClimateSA.py $SA_2_Compute $SystemFC $NumSA
+python3 02_Compute_ClimateSA.py $Acc $SA_2_Compute $SystemFC $NumSA

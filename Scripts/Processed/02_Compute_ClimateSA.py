@@ -25,11 +25,11 @@ import metview as mv
 # INPUT PARAMETERS
 BaseDateS = datetime(2000,1,1,0)
 BaseDateF = datetime(2020,12,31,0)
-Acc = 12
+Acc = int(sys.argv[1])
 Perc_list = np.append(np.arange(1,100), np.array([99.8, 99.9, 99.95, 99.98, 99.99, 99.995, 99.998]))
-SA_2_Compute = int(sys.argv[1])
-SystemFC = sys.argv[2]
-NumSA = int(sys.argv[3])
+SA_2_Compute = int(sys.argv[2])
+SystemFC = sys.argv[3]
+NumSA = int(sys.argv[4])
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 FileIN_Sample_Grib_Global = "Data/Raw/Sample_Grib_Global.grib"
 DirIN_RainSA = "Data/Compute/01_ExtractSA"
