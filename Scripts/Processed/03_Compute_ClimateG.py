@@ -17,7 +17,7 @@ import metview as mv
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
-Acc = 12
+Acc = 24
 NumSA = 160
 SystemFC = "ERA5"
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
