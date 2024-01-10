@@ -24,7 +24,7 @@ import metview as mv
 
 # INPUT PARAMETERS
 BaseDateS = datetime(2000,1,2,0)
-BaseDateF = datetime(2000,1,3,0)
+BaseDateF = datetime(2020,12,31,0)
 Acc = int(sys.argv[1])
 Perc_list = np.append(np.arange(1,100), np.array([99.8, 99.9, 99.95, 99.98, 99.99, 99.995, 99.998]))
 SA_2_Compute = int(sys.argv[2])

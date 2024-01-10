@@ -2,7 +2,7 @@ import os
 import numpy as np
 import metview as mv
 
-#############################################################################
+#################################################################################
 # CODE DESCRIPTION
 # 04_Plot_Climate.py plots modelled rainfall climatologies.
 # Code runtime: negligible
@@ -24,7 +24,7 @@ SystemFC_list = ["ERA5"]
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 DirIN = "Data/Compute/03_ClimateG"
 DirOUT = "Data/Plot/04_ClimateG"
-#############################################################################
+#################################################################################
 
 # Defining the return period correspondent to the considered percentile
 if Perc == 99:

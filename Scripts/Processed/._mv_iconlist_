@@ -1,10 +1,10 @@
-29,13,PYTHON,01_Compute_ExtractSA.py
-234,13,PYTHON,02_Compute_ClimateSA.py
-423,13,SHELL,02_SubmitterATOS_ClimateSA.sh
-634,13,SHELL,02_WrapperATOS_ClimateSA.sh
--100,-100,PYTHON,03_Compute_ClimateG.py
--100,-100,PYTHON,04_Plot_ClimateG.py
-288,74,FOLDER,LogATOS
-485,74,NOTE,README.md
--100,-100,NOTE,ecsbatch.log.33050645
--100,-100,PYTHON,test.py
+440,8,PYTHON,01_Compute_ExtractSA.py
+645,8,PYTHON,02_Compute_ClimateSA.py
+1245,8,SHELL,02_SubmitterATOS_ClimateSA.sh
+1455,8,SHELL,02_WrapperATOS_ClimateSA.sh
+854,8,PYTHON,03_Compute_ClimateG.py
+1076,8,PYTHON,04_Plot_ClimateG.py
+252,253,GEOVIEW,Geographical View
+-100,-100,FOLDER,Geographical View#
+81,8,FOLDER,LogATOS
+277,8,NOTE,README.md
