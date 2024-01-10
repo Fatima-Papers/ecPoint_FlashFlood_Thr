@@ -24,7 +24,7 @@ import metview as mv
 
 # INPUT PARAMETERS
 BaseDateS = datetime(2000,1,2,0)
-BaseDateF = datetime(2020,12,31,0)
+BaseDateF = datetime(2000,1,3,0)
 Acc = int(sys.argv[1])
 Perc_list = np.append(np.arange(1,100), np.array([99.8, 99.9, 99.95, 99.98, 99.99, 99.995, 99.998]))
 SA_2_Compute = int(sys.argv[2])
@@ -68,21 +68,23 @@ while BaseDate <= BaseDateF:
       DirIN_temp = GitRepo + "/" + DirIN_RainSA + "_" + f'{Acc:02d}' + "h/" + SystemFC + "/" + BaseDate.strftime("%Y%m%d")
       FileIN_temp = "tp_" + BaseDate.strftime("%Y%m%d") + "_" + f'{SA_2_Compute:03d}' + ".npy"
       tp_SA = np.load(DirIN_temp + "/" + FileIN_temp)
-      tp_full_period_sa = np.hstack((tp_full_period_sa, tp_SA))     
+
+      if Acc == 24 and SystemFC == "ERA5":
+            tp_full_period_sa = np.vstack((tp_full_period_sa, tp_SA))
+      else:
+            tp_full_period_sa = np.hstack((tp_full_period_sa, tp_SA))
       
       BaseDate = BaseDate + timedelta(days=1)
 
 # Eliminating the empty elements when a 1-d array is initiated; 2-d arrays ar intitated for other Acc/SytemFC combination, so this passage is not required
 if Acc == 24 and SystemFC == "ERA5":
-      tp_full_period_sa = tp_full_period_sa[NumGP_sa::]
+      tp_full_period_sa = tp_full_period_sa.T
+      tp_full_period_sa = tp_full_period_sa[:,1:]
 
 # Computing the rainfall climatology as percentiles
 print("Computing the rainfall climatology as percentiles")
-if Acc == 24 and SystemFC == "ERA5":
-      percs_sa = np.percentile(tp_full_period_sa, Perc_list)
-else:
-      percs_sa = np.percentile(tp_full_period_sa, Perc_list, axis=1).T
-     
+percs_sa = np.percentile(tp_full_period_sa, Perc_list, axis=1).T
+
 # Saving the rainfall climatology for the specific sub-area
 print("Saving the rainfall climatology")
 DirOUT_temp = GitRepo + "/" + DirOUT + "_" + f'{Acc:02d}' + "h/" + SystemFC
