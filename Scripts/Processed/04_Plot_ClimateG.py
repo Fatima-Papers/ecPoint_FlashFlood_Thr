@@ -17,10 +17,10 @@ import metview as mv
 # DirOUT (string): relative path for the output directory containing the climatology.
 
 # INPUT PARAMETERS
-Acc = 12
-Perc = 99.998
+Acc = 24
+Perc = 99.8
 Perc_list = np.append(np.arange(1,100), np.array([99.8, 99.9, 99.95, 99.98, 99.99, 99.995, 99.998]))
-SystemFC_list = ["ERA5"]
+SystemFC_list = ["ERA5_ecPoint"]
 GitRepo = "/ec/vol/ecpoint_dev/mofp/Papers_2_Write/RainThr_4FlashFloodFC_ecPointERA5"
 DirIN = "Data/Compute/03_ClimateG"
 DirOUT = "Data/Plot/04_ClimateG"

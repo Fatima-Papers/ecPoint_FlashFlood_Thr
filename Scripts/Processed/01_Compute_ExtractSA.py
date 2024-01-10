@@ -22,7 +22,7 @@ import metview as mv
 
 # INPUT PARAMETERS
 BaseDateS = datetime(2000,1,1,0)
-BaseDateF = datetime(2020,12,31,0)
+BaseDateF = datetime(2000,1,1,0)
 Acc = 24
 NumSA = 160
 SystemFC = "ERA5"
@@ -209,7 +209,10 @@ while BaseDate <= BaseDateF:
             j = int(NumGP_Global/NumSA)
             for ind_SA in range(NumSA):
                   
-                  tp_sa_temp = tp_temp[i:j,:]
+                  if SystemFC == "ERA5" and Acc == 24:
+                        tp_sa_temp = tp_temp[i:j]
+                  else:
+                        tp_sa_temp = tp_temp[i:j,:]
 
                   # Saving the extracted sub-areas
                   DirOUT_temp = GitRepo + "/" + DirOUT + "_" + f'{Acc:02d}' + "h/" + SystemFC + "/" + BaseDate.strftime("%Y%m%d")
